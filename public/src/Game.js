@@ -1,9 +1,9 @@
-import * as utilities from "/public/src/utilities.js";
-import * as resources from "/public/src/resources.js";
+import * as utilities from "/memoryCards/public/src/utilities.js";
+import * as resources from "/memoryCards/public/src/resources.js";
 
-import { Card } from "/public/src/Card.js";
-import { Table } from "/public/src/Table.js";
-import { myAlert } from "/public/src/myAlert.js";
+import { Card } from "/memoryCards/public/src/Card.js";
+import { Table } from "/memoryCards/public/src/Table.js";
+import { myAlert } from "/memoryCards/public/src/myAlert.js";
 console.log({ utilities, myAlert, Card, resources, Table });
 
 
