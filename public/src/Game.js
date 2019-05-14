@@ -1,9 +1,9 @@
-import * as utilities from "/memoryCards/public/src/utilities.js";
-import * as resources from "/memoryCards/public/src/resources.js";
+import * as utilities from "/public/src/utilities.js";
+import * as resources from "/public/src/resources.js";
 
-import { Card } from "/memoryCards/public/src/Card.js";
-import { Table } from "/memoryCards/public/src/Table.js";
-import { myAlert } from "/memoryCards/public/src/myAlert.js";
+import { Card } from "/public/src/Card.js";
+import { Table } from "/public/src/Table.js";
+import { myAlert } from "/public/src/myAlert.js";
 console.log({ utilities, myAlert, Card, resources, Table });
 
 
@@ -42,7 +42,7 @@ export class Game {
 
         document.body.appendChild(this.gameWrapper);
 
-        this.table = new Table(this.gameWrapper, "100%", "100%", this.resources.imgs.catedras[2], this.resources.imgs.catedras[0]);
+        this.table = new Table(this.gameWrapper, "100%", "100%", this.resources.imgs.catedrasCategory, this.resources.imgs.catedrasTable);
         this.Card = Card;
         this.cards = [];
         this.cardsChecked = [];
@@ -63,14 +63,14 @@ export class Game {
 
 
         };
+
         // eventListener for cards manipulation
         this.result = () => {
             if (!this.run) {
-                this.table.statistics.timer();
-                console.log(this.secs);
+                this.run = true;
+                this.table.statistics.timerStart();
             }
             this.table.statistics.chance++;
-            // console.log(this.table.statistics.chance);
             if (this.needUncheck) {
                 this.uncheckCards();
             }
@@ -93,12 +93,16 @@ export class Game {
 
             });
             if (this.cardsChecked.length == 2) {
-
+                // if those two cards are equal
                 if (this.cardsChecked[0].imgSrc2 == this.cardsChecked[1].imgSrc2) {
                     console.log("similar");
                     this.cards[first].done();
                     this.cards[second].done();
                     this.table.statistics.score++;
+
+                    if (this.table.statistics.score == (this.cards.length / 2)) {
+                        this.table.statistics.timerStop();
+                    }
 
 
                 } else {
@@ -114,10 +118,46 @@ export class Game {
         };
 
         this.setCards = (y = 0) => {
-            for (let i = 0; i < resources.cards.number[y]; i++) {
-                this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs.catedras[i + 3], this.resources.imgs.catedras[1]));
 
+            for (let i = 0; i < resources.cards.number[y]; i++) {
+                this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs.catedras[0], this.resources.imgs.catedrasBack));
             }
+            // random img
+            let randomNumbers = [];
+            const max = this.cards.length - 1;
+
+            for (let y = 0; y < 2; y++) {
+                for (let i = 0; i <= max / 2; i++) {
+                    randomNumbers.push(i);
+
+                }
+            }
+
+
+
+
+
+            let currentIndex = randomNumbers.length;
+            let temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = randomNumbers[currentIndex];
+                randomNumbers[currentIndex] = randomNumbers[randomIndex];
+                randomNumbers[randomIndex] = temporaryValue;
+            }
+
+            console.log(randomNumbers);
+            // now update, all random pairs of imgs
+            for (let i = 0; i <= max; i++) {
+                this.cards[i].load(this.resources.imgs.catedras[randomNumbers[i]]);
+            }
+
         };
         this.finish = () => {
             //remove all created HTML textures

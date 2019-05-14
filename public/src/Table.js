@@ -1,4 +1,4 @@
-import { Statistics } from "/memoryCards/public/src/Statistics.js";
+import { Statistics } from "/public/src/Statistics.js";
 console.log(Statistics);
 export class Table {
     constructor(parent = document.body, width, height, imgSrc, imgSrc2, alpha = 1) {
