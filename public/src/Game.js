@@ -29,7 +29,7 @@ export class Game {
         this.resize = () => {
             const width = innerWidth;
             if (width >= 1024) {
-                // seeing future "game" name
+                // seeing future "game" name -> instead of trying bind somehow
                 game.gameSize("80%");
             } else {
                 game.gameSize("100%");
