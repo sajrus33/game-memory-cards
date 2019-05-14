@@ -38,11 +38,12 @@ export class Statistics {
         this.chanceRight = Math.round(this.x * .9);
 
         // timer resources
-        this.ms = "00";
-        this.min = "00";
+        this.unit = "00";
         this.sec = "00";
+        this.min = "00";
 
-        this.date = undefined;
+
+        this.interval = undefined;
         this.score = 0;
         this.chance = 0;
 
@@ -73,31 +74,35 @@ export class Statistics {
 
         };
 
-        this.timer = () => {
-            this.date = new Date();
+        this.timerStart = () => {
+            this.interval = setInterval(() => {
+                this.unit++;
+            }, 1000);
+        };
+        this.timerStop = () => {
+            clearInterval(this.interval);
         };
 
         this.update = () => {
 
-            if (this.date) {
-                // this.ms = -Math.abs(this.ms);
-                this.ms = this.date.getSeconds();
-                // this.ms = Math.abs(this.ms);
-                console.log(this.ms);
 
-                this.sec = Math.floor((this.ms));
-                // console.log(Math.abs(this.ms - this.date.getMinutes()));
-                this.min = Math.floor(this.sec / 60);
-                if (this.min < 10) {
-                    this.min = "0" + this.min;
-                }
-                this.sec = this.sec % 60;
-                if (this.sec < 10) {
-                    this.sec = "0" + this.sec;
-                }
+            // this.ms = -Math.abs(this.ms);
 
+            // this.ms = Math.abs(this.ms);
+
+            this.sec = Math.floor((this.unit));
+            // console.log(Math.abs(this.ms - this.date.getMinutes()));
+            this.min = Math.floor(this.sec / 60);
+            if (this.min < 10) {
+                this.min = "0" + this.min;
             }
+            this.sec = this.sec % 60;
+            if (this.sec < 10) {
+                this.sec = "0" + this.sec;
+            }
+
         };
+
         this.render = () => {
             this.ctx.clearRect(0, 0, this.width, this.height);
             // this.ctx.drawImage(this.img, 0, 0, this.x, this.canvas.height);
