@@ -27,6 +27,7 @@ export class Card {
             // new img?
             this.imgSrc = src;
             this.img.src = src;
+            // new img?
             this.imgSrc2 = src2;
             this.img2.src = src2;
         };
