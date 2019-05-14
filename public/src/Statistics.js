@@ -38,9 +38,10 @@ export class Statistics {
         this.chanceRight = Math.round(this.x * .9);
 
         // timer resources
-        this.ms = "00";
-        this.min = "00";
+        this.unit = "00";
         this.sec = "00";
+        this.min = "00";
+
 
         this.interval = undefined;
         this.score = 0;
@@ -75,8 +76,8 @@ export class Statistics {
 
         this.timerStart = () => {
             this.interval = setInterval(() => {
-                this.sec++;
-            }, 100);
+                this.unit++;
+            }, 1000);
         };
         this.timerStop = () => {
             clearInterval(this.interval);
@@ -89,7 +90,7 @@ export class Statistics {
 
             // this.ms = Math.abs(this.ms);
 
-            // this.sec = Math.floor((this.ms) / 100);
+            this.sec = Math.floor((this.unit));
             // console.log(Math.abs(this.ms - this.date.getMinutes()));
             this.min = Math.floor(this.sec / 60);
             if (this.min < 10) {
