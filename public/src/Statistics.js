@@ -75,8 +75,8 @@ export class Statistics {
 
         this.timerStart = () => {
             this.interval = setInterval(() => {
-                this.ms++;
-            }, 1);
+                this.sec++;
+            }, 100);
         };
         this.timerStop = () => {
             clearInterval(this.interval);
@@ -89,7 +89,7 @@ export class Statistics {
 
             // this.ms = Math.abs(this.ms);
 
-            this.sec = Math.floor((this.ms) / 100);
+            // this.sec = Math.floor((this.ms) / 100);
             // console.log(Math.abs(this.ms - this.date.getMinutes()));
             this.min = Math.floor(this.sec / 60);
             if (this.min < 10) {
