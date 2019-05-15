@@ -84,11 +84,6 @@ export class Statistics {
 
         this.update = () => {
 
-
-            // this.ms = -Math.abs(this.ms);
-
-            // this.ms = Math.abs(this.ms);
-
             this.sec = Math.floor((this.ms));
             // console.log(Math.abs(this.ms - this.date.getMinutes()));
             this.min = Math.floor(this.sec / 60);
@@ -105,11 +100,11 @@ export class Statistics {
         this.render = () => {
             this.ctx.clearRect(0, 0, this.width, this.height);
             // this.ctx.drawImage(this.img, 0, 0, this.x, this.canvas.height);
-            this.ctx.font = "22px Courier";
+            this.ctx.font = "24px Courier";
             this.ctx.fillText("" + this.score, this.timeLeft, this.y, this.timeRight);
             this.ctx.font = "17px Courier";
             this.ctx.fillText("" + this.min + ":" + this.sec, this.scoreLeft, this.y);
-            this.ctx.font = "22px Courier";
+            this.ctx.font = "24px Courier";
             this.ctx.fillText("" + this.chance, this.chanceLeft, this.y, this.chanceRight);
 
             this.update();

@@ -4,6 +4,9 @@ import * as resources from "/memoryCards/public/src/resources.js";
 import { Card } from "/memoryCards/public/src/Card.js";
 import { Table } from "/memoryCards/public/src/Table.js";
 import { myAlert } from "/memoryCards/public/src/myAlert.js";
+
+import { Interfejs } from "/memoryCards/public/src/Interfejs.js";
+
 console.log({ utilities, myAlert, Card, resources, Table });
 
 
@@ -16,33 +19,34 @@ export class Game {
         this.resources = resources;
         this.utilities = utilities;
 
+        this.Interfejs = Interfejs;
+
         this.gameWrapper = document.createElement("div");
         this.gameWrapper.style.width = "100%";
         this.gameWrapper.style.height = "100%";
         this.gameWrapper.style.minWidth = "320px";
         this.gameWrapper.style.minHeight = "320px";
 
+
+
         this.gameSize = (size) => {
             this.gameWrapper.style.width = size;
             this.gameWrapper.style.height = size;
         };
-        this.resize = () => {
-            const width = innerWidth;
-            if (width >= 1024) {
-                // seeing future "game" name -> instead of trying bind somehow
-                game.gameSize("80%");
-            } else {
-                game.gameSize("100%");
-            }
-        }
 
-        // margin on big screen
-        window.addEventListener("resize", this.resize);
 
 
         document.body.appendChild(this.gameWrapper);
 
-        this.table = new Table(this.gameWrapper, "100%", "100%", this.resources.imgs.catedrasCategory, this.resources.imgs.catedrasTable);
+        this.returnBtn = document.createElement("button");
+        this.returnBtn.classList.add("returnBtn");
+        this.returnBtn.addEventListener("click", () => {
+            this.finish();
+        });
+        this.gameWrapper.appendChild(this.returnBtn);
+
+
+        this.table = new Table(this.gameWrapper, "100%", "100%", this.resources.imgs[this.category].category, this.resources.imgs[this.category].table);
         this.Card = Card;
         this.cards = [];
         this.cardsChecked = [];
@@ -102,6 +106,10 @@ export class Game {
 
                     if (this.table.statistics.score == (this.cards.length / 2)) {
                         this.table.statistics.timerStop();
+                        setTimeout(() => {
+                            this.finish();
+
+                        }, 2000);
                     }
 
 
@@ -120,7 +128,7 @@ export class Game {
         this.setCards = (y = 0) => {
 
             for (let i = 0; i < resources.cards.number[y]; i++) {
-                this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs.catedras[0], this.resources.imgs.catedrasBack));
+                this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs[this.category].faces[0], this.resources.imgs[this.category].back));
             }
             // random img
             let randomNumbers = [];
@@ -155,13 +163,15 @@ export class Game {
             console.log(randomNumbers);
             // now update, all random pairs of imgs
             for (let i = 0; i <= max; i++) {
-                this.cards[i].load(this.resources.imgs.catedras[randomNumbers[i]]);
+                this.cards[i].load(this.resources.imgs[this.category].faces[randomNumbers[i]]);
             }
 
         };
         this.finish = () => {
             //remove all created HTML textures
             this.gameWrapper.remove();
+            const newInterfejs = new this.Interfejs();
+
         };
 
         this.init = (cardsOption = this.cardsOption) => {
@@ -170,16 +180,15 @@ export class Game {
             this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
             });
-            this.resize();
 
         };
     }
 }
 
 
-const game = new Game(1);
+// const game = new Game(1);
 
-game.init();
+// game.init();
 
 
 
