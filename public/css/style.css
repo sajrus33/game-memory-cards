@@ -13,7 +13,7 @@ body{
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-image: url("/game-memory-cards/public/img/ground.jpg");
+  background-image: url("/public/img/ground.jpg");
   background-size: cover;
   box-shadow: inset 200vw 0 0 0px rgba(0,0,0,0.5);
 
@@ -43,11 +43,11 @@ canvas{
   position: absolute;
   right: 5px;
   top: 5px;
-  width: 50px;
-  height: 20px;
+  width: 75px;
+  height: 30px;
   border: none;
   background-color: transparent;
-  background-image: url("/game-memory-cards/public/img/icon.png");
+  background-image: url("/public/img/icon.png");
   background-size: 100% 100%;
   z-index: 3;
 }
@@ -79,20 +79,43 @@ canvas{
   font-size: 1.5em;
 }
 
+.hideRight{
+  animation: hideRight .4s forwards;
+}
+
+@keyframes hideRight{
+  0%{
+    transform: translateX(0);
+  }
+  20%{
+    transform: translateX(-15vw);
+  }
+  100%{
+    transform: translateX(100vw);
+  }
+}
+
+
+
+/* LIB myAlert */
 .tip {
     position: fixed;
     top: 0;
     z-index: 999;
     width: 100vw;
     height: 70px;
-    background-color: rgba(239, 171, 31,1);
-    color: black;
+    background-color: black;
+    color: silver;
+    font-weight: 600;
+    font-family: "courier";
+    text-transform: capitalize;
+
     animation: tip 4s forwards;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.15em;
+    font-size: 1.5em;
     pointer-events: none;
   }
 
