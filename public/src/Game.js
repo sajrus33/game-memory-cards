@@ -1,11 +1,11 @@
-import * as utilities from "/memoryCards/public/src/utilities.js";
-import * as resources from "/memoryCards/public/src/resources.js";
+import * as utilities from "/game-memory-cards/public/src/utilities.js";
+import * as resources from "/game-memory-cards/public/src/resources.js";
 
-import { Card } from "/memoryCards/public/src/Card.js";
-import { Table } from "/memoryCards/public/src/Table.js";
-import { myAlert } from "/memoryCards/public/src/myAlert.js";
+import { Card } from "/game-memory-cards/public/src/Card.js";
+import { Table } from "/game-memory-cards/public/src/Table.js";
+import { myAlert } from "/game-memory-cards/public/src/myAlert.js";
 
-import { Interfejs } from "/memoryCards/public/src/Interfejs.js";
+import { Interfejs } from "/game-memory-cards/public/src/Interfejs.js";
 
 console.log({ utilities, myAlert, Card, resources, Table });
 

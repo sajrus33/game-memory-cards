@@ -13,7 +13,7 @@ body{
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-image: url("/memoryCards/public/img/ground.jpg");
+  background-image: url("/game-memory-cards/public/img/ground.jpg");
   background-size: cover;
   box-shadow: inset 200vw 0 0 0px rgba(0,0,0,0.5);
 
@@ -47,7 +47,7 @@ canvas{
   height: 20px;
   border: none;
   background-color: transparent;
-  background-image: url("/memoryCards/public/img/icon.png");
+  background-image: url("/game-memory-cards/public/img/icon.png");
   background-size: 100% 100%;
   z-index: 3;
 }

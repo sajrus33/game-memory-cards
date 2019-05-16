@@ -1,4 +1,4 @@
-import { Interfejs } from "/memoryCards/public/src/Interfejs.js";
+import { Interfejs } from "/game-memory-cards/public/src/Interfejs.js";
 
 
 const interfejs = new Interfejs();

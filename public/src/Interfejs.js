@@ -1,4 +1,4 @@
-import { Game } from "/memoryCards/public/src/Game.js";
+import { Game } from "/game-memory-cards/public/src/Game.js";
 export class Interfejs {
     constructor(game = Game) {
         this.self = document.createElement("div");
