@@ -187,10 +187,10 @@ export class Game {
             new this.Interfejs();
         };
 
-        this.init = (cardsOption = this.cardsOption) => {
+        this.init = async (cardsOption = this.cardsOption) => {
             this.preload();
             this.table.appendTo();
-            this.setCards(cardsOption);
+            await this.setCards(cardsOption);
             this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
                 card.check();
