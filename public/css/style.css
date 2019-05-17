@@ -13,7 +13,7 @@ body{
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-image: url("/game-memory-cards/public/img/ground2.jpg");
+  background-image: url("/game-memory-cards/public/img/basic.jpg");
   background-size: cover;
   box-shadow: inset 200vw 0 0 0px rgba(0,0,0,0.5);
 
