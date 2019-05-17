@@ -36,6 +36,7 @@ export class Card {
             this.img2.src = src2;
         };
         this.check = () => {
+            console.log("check");
             if (this.checked) {
                 this.checked = false;
             } else this.checked = true;

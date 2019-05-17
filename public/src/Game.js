@@ -63,9 +63,8 @@ export class Game {
                 }
             });
             this.needUncheck = false;
+            //stats equalizer 
             this.table.statistics.chance--;
-
-
         };
 
         // eventListener for cards manipulation
@@ -74,13 +73,16 @@ export class Game {
                 this.run = true;
                 this.table.statistics.timerStart();
             }
+
+            // stats ++
             this.table.statistics.chance++;
+
             if (this.needUncheck) {
                 this.uncheckCards();
             }
+
             // two cards to compare
             let first, second;
-            // one chance ++
 
             //with card is checked ?
             this.cards.forEach((card, i) => {
@@ -89,13 +91,10 @@ export class Game {
                     this.cardsChecked.push(card);
                     if (first != undefined) {
                         second = i;
-                        // console.log({ second });
                     } else first = i;
-                    // console.log({ first });
-
                 }
-
             });
+
             if (this.cardsChecked.length == 2) {
                 // if those two cards are equal
                 console.log(this.cardsChecked[1].imgTrue, this.cardsChecked[0].imgTrue);
@@ -126,6 +125,8 @@ export class Game {
             this.cardsChecked = [];
         };
 
+
+
         this.preload = () => {
             this.preloader = document.createElement("div");
             this.preloader.classList.add("preloader");
@@ -137,14 +138,12 @@ export class Game {
 
 
 
-
         this.setCards = (y = 0) => {
-            this.preload();
-
             for (let i = 0; i < resources.cards.number[y]; i++) {
                 this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs[this.category].faces[0], this.resources.imgs[this.category].back));
             }
-            // random img
+
+            // randoms Array
             let randomNumbers = [];
             const max = this.cards.length - 1;
 
@@ -159,7 +158,7 @@ export class Game {
             let currentIndex = randomNumbers.length;
             let temporaryValue, randomIndex;
 
-            // While there remain elements to shuffle...
+            // While there remain elements to shuffle...                it will wait, cause while is an unethical hacker  :)
             while (0 !== currentIndex) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
@@ -175,11 +174,7 @@ export class Game {
             // now update, all random pairs of imgs
             for (let i = 0; i <= max; i++) {
                 this.cards[i].load(this.resources.imgs[this.category].faces[randomNumbers[i]]);
-                for (let y = 0; y < 2; y++) {
-                    this.cards[i].check();
-                }
                 if (i == max) {
-                    this.preloadEnd();
                 }
             }
 
@@ -188,19 +183,20 @@ export class Game {
 
 
         this.finish = () => {
-            //remove all created HTML textures
             this.gameWrapper.remove();
-            const newInterfejs = new this.Interfejs();
-
+            new this.Interfejs();
         };
 
         this.init = (cardsOption = this.cardsOption) => {
+            this.preload();
             this.table.appendTo();
             this.setCards(cardsOption);
             this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
+                card.check();
+                card.check();
             });
-
+            this.preloadEnd();
         };
     }
 }
