@@ -126,7 +126,20 @@ export class Game {
             this.cardsChecked = [];
         };
 
+        this.preload = () => {
+            this.preloader = document.createElement("div");
+            this.preloader.classList.add("preloader");
+            document.body.appendChild(this.preloader);
+        };
+        this.preloadEnd = () => {
+            this.preloader.remove();
+        };
+
+
+
+
         this.setCards = (y = 0) => {
+            this.preload();
 
             for (let i = 0; i < resources.cards.number[y]; i++) {
                 this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs[this.category].faces[0], this.resources.imgs[this.category].back));
@@ -142,10 +155,7 @@ export class Game {
                 }
             }
 
-
-
-
-
+            // RANDOM CARDS "SHUFFLLE"
             let currentIndex = randomNumbers.length;
             let temporaryValue, randomIndex;
 
@@ -165,9 +175,15 @@ export class Game {
             // now update, all random pairs of imgs
             for (let i = 0; i <= max; i++) {
                 this.cards[i].load(this.resources.imgs[this.category].faces[randomNumbers[i]]);
+                if (i == max) {
+                    this.preloadEnd();
+                }
             }
 
         };
+
+
+
         this.finish = () => {
             //remove all created HTML textures
             this.gameWrapper.remove();

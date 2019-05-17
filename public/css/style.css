@@ -33,6 +33,20 @@ canvas{
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 
 }
+
+.preloader{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: purple;
+
+
+  z-index: 999;
+}
+
+
 .card{
   /* border: 1px solid black; */
   transition:.4s;
@@ -78,6 +92,8 @@ canvas{
   justify-content: space-around;
   align-items: center;
 }
+
+
 .button{
   width:80%;
   height: 100px;
