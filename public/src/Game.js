@@ -110,7 +110,7 @@ export class Game {
                         setTimeout(() => {
                             this.finish();
 
-                        }, 2000);
+                        }, 5000);
                     }
 
 
