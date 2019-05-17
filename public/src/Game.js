@@ -107,10 +107,10 @@ export class Game {
 
                     if (this.table.statistics.score == (this.cards.length / 2)) {
                         this.table.statistics.timerStop();
-                        setTimeout(() => {
-                            this.finish();
+                        // setTimeout(() => {
+                        //     this.finish();
 
-                        }, 5000);
+                        // }, 5000);
                     }
 
 
