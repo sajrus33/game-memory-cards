@@ -51,7 +51,7 @@ export class Card {
                 // check
 
                 // console.log("checked");
-            }, 100);
+            }, 90);
 
 
 
