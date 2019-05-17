@@ -13,7 +13,7 @@ body{
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-image: url("/public/img/ground.jpg");
+  background-image: url("/game-memory-cards/public/img/ground.jpg");
   background-size: cover;
   box-shadow: inset 200vw 0 0 0px rgba(0,0,0,0.5);
 
@@ -35,7 +35,22 @@ canvas{
 }
 .card{
   /* border: 1px solid black; */
+  transition:.4s;
+  animation: rotateCard .2s linear;
 }
+
+@keyframes rotateCard{
+  0%{
+  transform: rotateX(180deg);
+
+  }
+ 
+  100%{
+  transform: rotateX(0deg);
+
+  }
+}
+
 .table{
   box-shadow: inset 0px 0px 50px 0px rgba(0,0,0,0.75);
 }
@@ -47,10 +62,12 @@ canvas{
   height: 30px;
   border: none;
   background-color: transparent;
-  background-image: url("/public/img/icon.png");
+  background-image: url("/game-memory-cards/public/img/icon.png");
   background-size: 100% 100%;
   z-index: 3;
 }
+
+
 
 .interfejs{
   width:100%;
@@ -77,12 +94,23 @@ canvas{
   font-family: "courier";
   font-weight: 600;
   font-size: 1.5em;
+
+  animation: fadeIn .2s forwards;
 }
+@keyframes fadeIn{
+  0%{
+    color: black;
+  }
+  100%{
+    color: silver;
+    
+  }
+}
+
 
 .hideRight{
   animation: hideRight .4s forwards;
 }
-
 @keyframes hideRight{
   0%{
     transform: translateX(0);
@@ -94,6 +122,10 @@ canvas{
     transform: translateX(100vw);
   }
 }
+
+
+
+
 
 
 

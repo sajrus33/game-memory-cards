@@ -1,11 +1,11 @@
-import * as utilities from "/public/src/utilities.js";
-import * as resources from "/public/src/resources.js";
+import * as utilities from "/game-memory-cards/public/src/utilities.js";
+import * as resources from "/game-memory-cards/public/src/resources.js";
 
-import { Card } from "/public/src/Card.js";
-import { Table } from "/public/src/Table.js";
-import { myAlert } from "/public/src/myAlert.js";
+import { Card } from "/game-memory-cards/public/src/Card.js";
+import { Table } from "/game-memory-cards/public/src/Table.js";
+import { myAlert } from "/game-memory-cards/public/src/myAlert.js";
 
-import { Interfejs } from "/public/src/Interfejs.js";
+import { Interfejs } from "/game-memory-cards/public/src/Interfejs.js";
 
 console.log({ utilities, myAlert, Card, resources, Table });
 
@@ -98,7 +98,8 @@ export class Game {
             });
             if (this.cardsChecked.length == 2) {
                 // if those two cards are equal
-                if (this.cardsChecked[0].imgSrc2 == this.cardsChecked[1].imgSrc2) {
+                console.log(this.cardsChecked[1].imgTrue, this.cardsChecked[0].imgTrue);
+                if (this.cardsChecked[0].imgTrue == this.cardsChecked[1].imgTrue) {
                     console.log("similar");
                     this.cards[first].done();
                     this.cards[second].done();

@@ -2,7 +2,7 @@ export class Card {
     constructor(parent, width, height, imgSrc, imgSrc2, alpha = 1) {
         // CANVAS
         this.canvas = document.createElement("canvas");
-        this.canvas.classList.add("card");
+        // this.canvas.classList.add("card");
         // CTX
         this.ctx = this.canvas.getContext("2d");
         this.ctx.globalAlpha = alpha;
@@ -20,6 +20,7 @@ export class Card {
 
 
 
+
         this.checked = false;
 
 
@@ -27,23 +28,31 @@ export class Card {
             // new img?
             this.imgSrc = src;
             this.img.src = src;
+            // for true img value, for future check() in Game.js
+            this.imgTrue = this.img.src;
+
             // new img?
             this.imgSrc2 = src2;
             this.img2.src = src2;
         };
         this.check = () => {
-            // console.log("checking");
-            this.img2.src = this.imgSrc;
-            this.img.src = this.imgSrc2;
-
-            const buffor = this.imgSrc;
-            this.imgSrc = this.imgSrc2;
-            this.imgSrc2 = buffor;
-            // check
             if (this.checked) {
                 this.checked = false;
             } else this.checked = true;
-            // console.log("checked");
+            this.canvas.classList.toggle("card");
+            // console.log("checking");
+            setTimeout(() => {
+                this.img2.src = this.imgSrc;
+                this.img.src = this.imgSrc2;
+
+                const buffor = this.imgSrc;
+                this.imgSrc = this.imgSrc2;
+                this.imgSrc2 = buffor;
+                // check
+
+                // console.log("checked");
+            }, 100);
+
 
 
         };
