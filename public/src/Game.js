@@ -135,7 +135,7 @@ export class Game {
         this.preloadEnd = () => {
             setTimeout(() => {
                 this.preloader.remove();
-            }, 100);
+            }, 3000);
         };
 
 
