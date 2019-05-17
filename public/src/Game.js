@@ -175,6 +175,9 @@ export class Game {
             // now update, all random pairs of imgs
             for (let i = 0; i <= max; i++) {
                 this.cards[i].load(this.resources.imgs[this.category].faces[randomNumbers[i]]);
+                for (let y = 0; y < 2; y++) {
+                    this.cards[i].check();
+                }
                 if (i == max) {
                     this.preloadEnd();
                 }
