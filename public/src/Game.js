@@ -191,10 +191,8 @@ export class Game {
             this.preload();
             this.table.appendTo();
             await this.setCards(cardsOption);
-            this.cards.forEach(card => {
+            await this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
-                card.check();
-                card.check();
             });
             this.preloadEnd();
         };

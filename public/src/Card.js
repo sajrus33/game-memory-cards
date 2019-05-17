@@ -52,7 +52,7 @@ export class Card {
                 // check
 
                 // console.log("checked");
-            }, 90);
+            }, 100);
 
 
 
