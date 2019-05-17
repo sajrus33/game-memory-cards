@@ -133,7 +133,9 @@ export class Game {
             document.body.appendChild(this.preloader);
         };
         this.preloadEnd = () => {
-            this.preloader.remove();
+            setTimeout(() => {
+                this.preloader.remove();
+            }, 100);
         };
 
 
@@ -189,10 +191,13 @@ export class Game {
 
         this.init = async (cardsOption = this.cardsOption) => {
             this.preload();
-            this.table.appendTo();
+            await this.table.appendTo();
             await this.setCards(cardsOption);
             await this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
+                for (let i = 0; i < 2; i++) {
+                    card.check();
+                }
             });
             this.preloadEnd();
         };

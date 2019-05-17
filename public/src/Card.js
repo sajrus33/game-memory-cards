@@ -35,14 +35,14 @@ export class Card {
             this.imgSrc2 = src2;
             this.img2.src = src2;
         };
-        this.check = () => {
+        this.check = async() => {
             console.log("check");
             if (this.checked) {
                 this.checked = false;
             } else this.checked = true;
             this.canvas.classList.toggle("card");
             // console.log("checking");
-            setTimeout(() => {
+            await setTimeout(() => {
                 this.img2.src = this.imgSrc;
                 this.img.src = this.imgSrc2;
 
