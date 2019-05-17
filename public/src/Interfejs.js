@@ -124,15 +124,6 @@ export class Interfejs {
             }, 400);
         });
 
-        this.optionsBtn = document.createElement("button");
-        this.optionsBtn.classList.add("button");
-        this.optionsBtn.innerText = "Options";
-        this.optionsBtn.addEventListener("click", () => {
-            this.addClass(this.optionsBtn, "hideRight");
-            setTimeout(() => {
-                this.removeAllBtns();
-            }, 400);
-        });
 
         this.statsBtn = document.createElement("button");
         this.statsBtn.classList.add("button");
@@ -147,8 +138,6 @@ export class Interfejs {
 
         document.body.appendChild(this.self);
         this.self.appendChild(this.startBtn);
-        this.self.appendChild(this.optionsBtn);
-
         this.self.appendChild(this.statsBtn);
 
 
