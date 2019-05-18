@@ -178,7 +178,6 @@ export class Game {
         };
 
         this.init = (cardsOption = this.cardsOption) => {
-            this.preload();
             this.table.appendTo();
             this.setCards(cardsOption);
             this.cards.forEach(card => {
