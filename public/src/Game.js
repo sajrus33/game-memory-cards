@@ -109,6 +109,7 @@ export class Game {
                         this.table.statistics.timerStop();
                         // setTimeout(() => {
                         //     this.finish();
+
                         // }, 5000);
                     }
 
