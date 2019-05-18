@@ -13,6 +13,7 @@ console.log({ utilities, myAlert, Card, resources, Table });
 export class Game {
     constructor(cardsOption = 1, category = "catedras") {
         this.category = category;
+        myAlert(this.category);
 
         this.cardsOption = cardsOption;
         this.resources = resources;
@@ -126,22 +127,6 @@ export class Game {
 
 
 
-        this.preload = () => {
-            this.preloader = document.createElement("div");
-            this.preloader.classList.add("preloader");
-            document.body.appendChild(this.preloader);
-        };
-        this.preloadEnd = () => {
-            setTimeout(() => {
-                this.preloader.remove();
-<<<<<<< HEAD
-                myAlert(this.category);
-
-            }, 3000);
-=======
-            }, 100);
->>>>>>> parent of d99db93... 3sec for ux
-        };
 
 
 
@@ -181,8 +166,6 @@ export class Game {
             // now update, all random pairs of imgs
             for (let i = 0; i <= max; i++) {
                 this.cards[i].load(this.resources.imgs[this.category].faces[randomNumbers[i]]);
-                if (i == max) {
-                }
             }
 
         };
@@ -194,17 +177,13 @@ export class Game {
             new this.Interfejs();
         };
 
-        this.init = async (cardsOption = this.cardsOption) => {
+        this.init = (cardsOption = this.cardsOption) => {
             this.preload();
-            await this.table.appendTo();
-            await this.setCards(cardsOption);
-            await this.cards.forEach(card => {
+            this.table.appendTo();
+            this.setCards(cardsOption);
+            this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
-                for (let i = 0; i < 2; i++) {
-                    card.check();
-                }
             });
-            this.preloadEnd();
         };
     }
 }
