@@ -28,6 +28,7 @@ export class Card {
             // new img?
             this.imgSrc = src;
             this.img.src = src;
+
             // for true img value, for future check() in Game.js
             this.imgTrue = this.img.src;
 
@@ -40,7 +41,6 @@ export class Card {
                 this.checked = false;
             } else this.checked = true;
             this.canvas.classList.toggle("card");
-            // console.log("checking");
             setTimeout(() => {
                 this.img2.src = this.imgSrc;
                 this.img.src = this.imgSrc2;
@@ -48,19 +48,20 @@ export class Card {
                 const buffor = this.imgSrc;
                 this.imgSrc = this.imgSrc2;
                 this.imgSrc2 = buffor;
-                // check
-
-                // console.log("checked");
             }, 100);
 
 
 
         };
+        // label for remove()
         const check = this.check;
+
+
         this.burn = () => {
 
 
         };
+
 
         this.done = () => {
             this.canvas.removeEventListener("click", check);
@@ -69,17 +70,14 @@ export class Card {
             cancelAnimationFrame(this.animation);
             this.ctx.clearRect(0, 0, this.width, this.height);
 
-            // this.total += 1;
-            // if (this.total == 3) {
-            //     this.total = 0;
-            //     this.frame += 1;
+
         };
+
 
         this.listen = () => {
             this.check();
-            console.log();
-
         };
+
 
         this.init = () => {
             this.load();
@@ -87,7 +85,16 @@ export class Card {
             this.canvas.addEventListener("click", check);
 
         };
-        this.appendTo = (parent = this.parent) => {
+
+
+        this.render = () => {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+            this.ctx.drawImage(this.img2, 0, 0, this.width, this.height);
+            this.animation = requestAnimationFrame(this.render);
+        };
+
+
+        (this.appendTo = (parent = this.parent) => {
             // new parent?
             this.parent = parent;
             // append
@@ -103,26 +110,11 @@ export class Card {
             this.canvas.width = this.width;
             this.canvas.height = this.height;
             this.canvas.style.backgroundColor = "transparent";
-            // this.canvas.style.border = "black 1px solid";
 
             this.init();
 
-        };
-
-        this.update = () => {
-        };
-        this.render = () => {
-            this.ctx.clearRect(0, 0, this.width, this.height);
-            // console.log(this.img);
-            this.ctx.drawImage(this.img2, 0, 0, this.width, this.height)
+        })();
 
 
-            this.update();
-            this.animation = requestAnimationFrame(this.render);
-        };
-
-        this.appendTo();
-
-        // console.log(this.canvas);
     }
 }

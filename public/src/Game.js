@@ -89,16 +89,13 @@ export class Game {
                     this.cardsChecked.push(card);
                     if (first != undefined) {
                         second = i;
-                        // console.log({ second });
                     } else first = i;
-                    // console.log({ first });
 
                 }
 
             });
             if (this.cardsChecked.length == 2) {
                 // if those two cards are equal
-                console.log(this.cardsChecked[1].imgTrue, this.cardsChecked[0].imgTrue);
                 if (this.cardsChecked[0].imgTrue == this.cardsChecked[1].imgTrue) {
                     console.log("similar");
                     this.cards[first].done();
@@ -107,10 +104,6 @@ export class Game {
 
                     if (this.table.statistics.score == (this.cards.length / 2)) {
                         this.table.statistics.timerStop();
-                        // setTimeout(() => {
-                        //     this.finish();
-
-                        // }, 5000);
                     }
 
 
@@ -169,9 +162,8 @@ export class Game {
 
         };
         this.finish = () => {
-            //remove all created HTML textures
             this.gameWrapper.remove();
-            const newInterfejs = new this.Interfejs();
+            new this.Interfejs();
 
         };
 
@@ -185,11 +177,6 @@ export class Game {
         };
     }
 }
-
-
-// const game = new Game(1);
-
-// game.init();
 
 
 
