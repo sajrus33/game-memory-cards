@@ -48,9 +48,7 @@ export class Card {
                 const buffor = this.imgSrc;
                 this.imgSrc = this.imgSrc2;
                 this.imgSrc2 = buffor;
-                // check
 
-                // console.log("checked");
             }, 100);
 
 
@@ -69,15 +67,10 @@ export class Card {
             cancelAnimationFrame(this.animation);
             this.ctx.clearRect(0, 0, this.width, this.height);
 
-            // this.total += 1;
-            // if (this.total == 3) {
-            //     this.total = 0;
-            //     this.frame += 1;
         };
 
         this.listen = () => {
             this.check();
-            console.log();
 
         };
 
