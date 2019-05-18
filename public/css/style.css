@@ -42,6 +42,7 @@ canvas{
   bottom: 0;
 <<<<<<< HEAD
   background-image: url("/game-memory-cards/public/img/preloader.png");
+<<<<<<< HEAD
   background-size: contain;
   background-repeat: no-repeat;
   transform-origin: center;
@@ -49,6 +50,8 @@ canvas{
 =======
   background-color: purple;
 >>>>>>> parent of 02b5d14... preloader photo.
+=======
+>>>>>>> parent of 049e362... Update style.css
 
 
   z-index: 999;
