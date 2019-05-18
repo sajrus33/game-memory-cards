@@ -13,7 +13,6 @@ console.log({ utilities, myAlert, Card, resources, Table });
 export class Game {
     constructor(cardsOption = 1, category = "catedras") {
         this.category = category;
-        myAlert(this.category);
 
         this.cardsOption = cardsOption;
         this.resources = resources;
@@ -135,6 +134,8 @@ export class Game {
         this.preloadEnd = () => {
             setTimeout(() => {
                 this.preloader.remove();
+                myAlert(this.category);
+
             }, 3000);
         };
 
