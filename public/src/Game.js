@@ -63,8 +63,9 @@ export class Game {
                 }
             });
             this.needUncheck = false;
-            //stats equalizer 
             this.table.statistics.chance--;
+
+
         };
 
         // eventListener for cards manipulation
@@ -73,16 +74,13 @@ export class Game {
                 this.run = true;
                 this.table.statistics.timerStart();
             }
-
-            // stats ++
             this.table.statistics.chance++;
-
             if (this.needUncheck) {
                 this.uncheckCards();
             }
-
             // two cards to compare
             let first, second;
+            // one chance ++
 
             //with card is checked ?
             this.cards.forEach((card, i) => {
@@ -91,10 +89,13 @@ export class Game {
                     this.cardsChecked.push(card);
                     if (first != undefined) {
                         second = i;
+                        // console.log({ second });
                     } else first = i;
-                }
-            });
+                    // console.log({ first });
 
+                }
+
+            });
             if (this.cardsChecked.length == 2) {
                 // if those two cards are equal
                 console.log(this.cardsChecked[1].imgTrue, this.cardsChecked[0].imgTrue);
@@ -124,17 +125,12 @@ export class Game {
             this.cardsChecked = [];
         };
 
-
-
-
-
-
         this.setCards = (y = 0) => {
+
             for (let i = 0; i < resources.cards.number[y]; i++) {
                 this.cards.push(new Card(this.table.cardswrapper, this.resources.cards.width[y], this.resources.cards.height[y], this.resources.imgs[this.category].faces[0], this.resources.imgs[this.category].back));
             }
-
-            // randoms Array
+            // random img
             let randomNumbers = [];
             const max = this.cards.length - 1;
 
@@ -145,11 +141,14 @@ export class Game {
                 }
             }
 
-            // RANDOM CARDS "SHUFFLLE"
+
+
+
+
             let currentIndex = randomNumbers.length;
             let temporaryValue, randomIndex;
 
-            // While there remain elements to shuffle...                it will wait, cause while is an unethical hacker  :)
+            // While there remain elements to shuffle...
             while (0 !== currentIndex) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
@@ -168,12 +167,11 @@ export class Game {
             }
 
         };
-
-
-
         this.finish = () => {
+            //remove all created HTML textures
             this.gameWrapper.remove();
-            new this.Interfejs();
+            const newInterfejs = new this.Interfejs();
+
         };
 
         this.init = (cardsOption = this.cardsOption) => {
@@ -182,6 +180,7 @@ export class Game {
             this.cards.forEach(card => {
                 card.canvas.addEventListener("click", this.result);
             });
+
         };
     }
 }
