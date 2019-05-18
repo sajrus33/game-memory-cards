@@ -40,24 +40,20 @@ canvas{
   right: 0;
   top: 0;
   bottom: 0;
+<<<<<<< HEAD
   background-image: url("/game-memory-cards/public/img/preloader.png");
   background-size: contain;
   background-repeat: no-repeat;
   transform-origin: center;
   background-position: 0 0;
+=======
+  background-color: purple;
+>>>>>>> parent of 02b5d14... preloader photo.
 
 
   z-index: 999;
-  animation: preloader .5s linear infinite;
 }
-@keyframes preloader{
-  0%{
-    transform: rotate(0) ;
-  }
-  100%{
-    transform: rotate(360deg) ;
-  }
-}
+
 
 .card{
   /* border: 1px solid black; */
