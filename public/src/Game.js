@@ -134,9 +134,13 @@ export class Game {
         this.preloadEnd = () => {
             setTimeout(() => {
                 this.preloader.remove();
+<<<<<<< HEAD
                 myAlert(this.category);
 
             }, 3000);
+=======
+            }, 100);
+>>>>>>> parent of d99db93... 3sec for ux
         };
 
 
