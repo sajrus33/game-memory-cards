@@ -41,6 +41,10 @@ canvas{
   top: 0;
   bottom: 0;
   background-image: url("/game-memory-cards/public/img/preloader.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform-origin: center;
+  background-position: 0 0;
 
 
   z-index: 999;
