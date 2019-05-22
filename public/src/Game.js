@@ -7,12 +7,11 @@ import { myAlert } from "/game-memory-cards/public/src/myAlert.js";
 
 import { Interfejs } from "/game-memory-cards/public/src/Interfejs.js";
 
-console.log({ utilities, myAlert, Card, resources, Table });
+// console.log({ utilities, myAlert, Card, resources, Table });
 
 export class Game {
   constructor(cardsOption = 1, category = "catedras") {
     this.category = category;
-    myAlert(this.category);
 
     this.cardsOption = cardsOption;
     this.resources = resources;
@@ -70,8 +69,6 @@ export class Game {
         this.table.statistics.timerStart();
       }
       if (event.target.classList.contains("card")) {
-        console.log(event.target, "jam target");
-
         this.table.statistics.chance++;
       }
       if (this.needUncheck) {
@@ -93,7 +90,7 @@ export class Game {
       if (this.cardsChecked.length == 2) {
         // if those two cards are equal
         if (this.cardsChecked[0].imgTrue == this.cardsChecked[1].imgTrue) {
-          console.log("similar");
+          //   console.log("similar");
           this.cards[first].done();
           this.cards[second].done();
           this.table.statistics.score++;
@@ -103,7 +100,7 @@ export class Game {
           }
         } else {
           this.needUncheck = true;
-          console.log("not similar");
+          //   console.log("not similar");
         }
         // anyway
         first = undefined;
@@ -149,7 +146,7 @@ export class Game {
         randomNumbers[randomIndex] = temporaryValue;
       }
 
-      console.log(randomNumbers);
+      //   console.log(randomNumbers);
       // now update, all random pairs of imgs
       for (let i = 0; i <= max; i++) {
         this.cards[i].load(
@@ -168,6 +165,7 @@ export class Game {
       this.cards.forEach(card => {
         card.canvas.addEventListener("click", this.result);
       });
+      myAlert(category);
     };
   }
 }
