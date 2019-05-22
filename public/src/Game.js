@@ -69,7 +69,8 @@ export class Game {
         this.run = true;
         this.table.statistics.timerStart();
       }
-      // this.table.statistics.chance++;
+      this.table.statistics.chance++;
+      console.log(event.target, "jam target");
       if (this.needUncheck) {
         this.uncheckCards();
       }
@@ -80,8 +81,6 @@ export class Game {
       //with card is checked ?
       this.cards.forEach((card, i) => {
         if (card.checked) {
-          this.table.statistics.chance++;
-
           this.cardsChecked.push(card);
           if (first != undefined) {
             second = i;
