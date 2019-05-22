@@ -68,7 +68,10 @@ export class Game {
         this.run = true;
         this.table.statistics.timerStart();
       }
-      if (event.target.classList.contains("card")) {
+      if (
+        (event.target.classList.contains("card") && !this.checked) ||
+        this.needUncheck
+      ) {
         this.table.statistics.chance++;
       }
       if (this.needUncheck) {
@@ -155,8 +158,12 @@ export class Game {
       }
     };
     this.finish = () => {
+      const name = "SlimShady";
+      const time = this.table.statistics.min + ":" + this.table.statistics.sec;
+      const chance = this.table.statistics.chance;
       this.gameWrapper.remove();
-      new this.Interfejs();
+
+      new this.Interfejs(name, time, chance);
     };
 
     this.init = (cardsOption = this.cardsOption) => {

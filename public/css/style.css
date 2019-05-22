@@ -1,25 +1,33 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-body{
-  position: fixed;
+::-webkit-scrollbar {
+  width: 15px;
+  background-color: silver;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #000;
+}
+body {
+  position: absolute;
   width: 100%;
   height: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  overflow-y: scroll;
   background-image: url("/game-memory-cards/public/img/basic.jpg");
   background-size: cover;
-  box-shadow: inset 200vw 0 0 0px rgba(0,0,0,0.5);
-
+  /* box-shadow: inset 0 300vw 0 0px rgba(0, 0, 0, 0.5); */
 }
 
-div{
+div {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -28,38 +36,35 @@ div{
   flex-wrap: wrap;
 }
 
-canvas{
+canvas {
   position: relative;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
-.card{
+.card {
   /* border: 1px solid black; */
-  transition:.4s;
-  animation: rotateCard .2s linear;
+  transition: 0.4s;
+  animation: rotateCard 0.2s linear;
 }
 
-@keyframes rotateCard{
-  0%{
-  transform: rotateX(180deg);
-
+@keyframes rotateCard {
+  0% {
+    transform: rotateX(180deg);
   }
- 
-  100%{
-  transform: rotateX(0deg);
 
+  100% {
+    transform: rotateX(0deg);
   }
 }
 
-.table{
-  box-shadow: inset 0px 0px 50px 0px rgba(0,0,0,0.75);
+.table {
+  box-shadow: inset 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
 }
-.returnBtn{
+.returnBtn {
   position: absolute;
   right: 5px;
   top: 5px;
   width: 75px;
-  height: 30px;
+  height: 75px;
   border: none;
   background-color: transparent;
   background-image: url("/game-memory-cards/public/img/icon.png");
@@ -67,19 +72,61 @@ canvas{
   z-index: 3;
 }
 
-
-
-.interfejs{
-  width:100%;
+.interfejs {
+  justify-self: flex-end;
+  width: 100%;
   height: 100%;
 
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-around;
   align-items: center;
 }
-.button{
-  width:80%;
+
+.tStatistics {
+  min-height: 320px;
+  width: 80%;
+  min-width: 320px;
+  background-color: #000;
+
+  border-left: 2px solid silver;
+  border-top: 2px solid silver;
+  margin: 15px 0;
+
+  text-transform: uppercase;
+
+  border-radius: 15px 15px 0px 0px;
+
+  color: silver;
+
+  font-family: "courier";
+  font-weight: 600;
+  font-size: 1.3em;
+  animation: fadeIn 0.2s forwards;
+
+  overflow: hidden;
+}
+.tStatistics .th {
+  padding: 15px 0;
+}
+.tStatistics .tr {
+  text-align: center;
+
+  color: silver;
+}
+
+.tStatistics .tr:nth-child(even) {
+  background-color: silver;
+  color: black;
+}
+
+.tStatistics .td {
+  text-transform: none;
+  border: 2px solid silver;
+}
+
+.button {
+  width: 80%;
   height: 100px;
 
   background-color: black;
@@ -95,79 +142,71 @@ canvas{
   font-weight: 600;
   font-size: 1.5em;
 
-  animation: fadeIn .2s forwards;
+  animation: fadeIn 0.2s forwards;
 }
-@keyframes fadeIn{
-  0%{
+@keyframes fadeIn {
+  0% {
     color: black;
   }
-  100%{
+  100% {
     color: silver;
-    
   }
 }
 
-
-.hideRight{
-  animation: hideRight .4s forwards;
+.hideRight {
+  animation: hideRight 0.4s forwards linear;
 }
-@keyframes hideRight{
-  0%{
+@keyframes hideRight {
+  0% {
     transform: translateX(0);
   }
-  20%{
+  20% {
     transform: translateX(-15vw);
   }
-  100%{
+  100% {
     transform: translateX(100vw);
   }
 }
 
-
-
-
-
-
-
 /* LIB myAlert */
 .tip {
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    width: 100vw;
-    height: 70px;
-    background-color: black;
-    color: silver;
-    font-weight: 600;
-    font-family: "courier";
-    text-transform: capitalize;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 70px;
+  background-color: black;
+  color: silver;
+  font-weight: 600;
+  font-family: "courier";
+  text-transform: capitalize;
 
-    animation: tip 4s forwards;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    pointer-events: none;
-  }
+  animation: tip 4s forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  pointer-events: none;
+}
 
-  @keyframes tip {
-    10% {
-      top: 60%;
-    }
-    15% {
-      top: 45%;
-    }
-    20% {
-      top: 55%;
-    }
-    25% {
-      top: 50%;
-    }
-    90% {
-      top: 50%;
-    }
-    100% {
-      top: 100%;
-    }
+@keyframes tip {
+  10% {
+    top: 60%;
   }
+  15% {
+    top: 45%;
+  }
+  20% {
+    top: 55%;
+  }
+  25% {
+    top: 50%;
+  }
+  90% {
+    top: 50%;
+  }
+  100% {
+    top: 100%;
+  }
+}
