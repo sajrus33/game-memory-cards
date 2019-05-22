@@ -69,8 +69,11 @@ export class Game {
         this.run = true;
         this.table.statistics.timerStart();
       }
-      this.table.statistics.chance++;
-      console.log(event.target, "jam target");
+      if (event.target.classList.contains("card")) {
+        console.log(event.target, "jam target");
+
+        this.table.statistics.chance++;
+      }
       if (this.needUncheck) {
         this.uncheckCards();
       }
