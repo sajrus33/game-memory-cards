@@ -5,7 +5,8 @@ import { Card } from "/game-memory-cards/public/src/Card.js";
 import { Table } from "/game-memory-cards/public/src/Table.js";
 import { myAlert } from "/game-memory-cards/public/src/myAlert.js";
 
-import { Interfejs } from "/game-memory-cards/public/src/Interfejs.js";
+import { Interface } from "/game-memory-cards/public/src/Interface.js";
+
 
 // console.log({ utilities, myAlert, Card, resources, Table });
 
@@ -17,7 +18,7 @@ export class Game {
     this.resources = resources;
     this.utilities = utilities;
 
-    this.Interfejs = Interfejs;
+    this.Interface = Interface;
 
     this.gameWrapper = document.createElement("div");
     this.gameWrapper.style.width = "100%";
@@ -163,7 +164,7 @@ export class Game {
       const chance = this.table.statistics.chance;
       this.gameWrapper.remove();
 
-      new this.Interfejs(name, time, chance);
+      new this.Interface(name, time, chance);
     };
 
     this.init = (cardsOption = this.cardsOption) => {

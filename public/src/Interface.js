@@ -1,7 +1,7 @@
 import { Game } from "/game-memory-cards/public/src/Game.js";
 // import { myAlert } from "/public/src/myAlert.js";
 
-export class Interfejs {
+export class Interface {
   constructor(name, time, chance, game = Game) {
     // FUNCTIONS AND UNDERFUNCTIONS
     // UNDERFUNCTION, ADDCLASS

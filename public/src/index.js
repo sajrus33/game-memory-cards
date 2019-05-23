@@ -1,3 +1,3 @@
-import { Interfejs } from "/game-memory-cards/public/src/Interfejs.js";
+import { Interface } from "/game-memory-cards/public/src/Interface.js";
 
-const interfejs = new Interfejs();
+const Interface = new Interface();
