@@ -81,13 +81,13 @@ canvas {
   height: 50px;
   border: none;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: white;
   background-image: url("/game-memory-cards/public/img/copy.png");
   background-size: 100% 100%;
   z-index: 3;
 }
 .link:hover {
-  background-color: white;
+  background-color: silver;
 }
 
 .interfejs {
