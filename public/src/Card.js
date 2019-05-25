@@ -16,6 +16,9 @@ export class Card {
     this.img2 = new Image();
     this.imgSrc2 = imgSrc2;
 
+    this.imgBurn = new Image();
+    this.imgBurn.src = "public/img/explosion.png";
+
     this.checked = false;
 
     this.load = (src = this.imgSrc, src2 = this.imgSrc2) => {
@@ -47,7 +50,37 @@ export class Card {
     // label for remove()
     const check = this.check;
 
-    this.burn = () => {};
+    this.burnFrame = 0;
+    this.burnMs = 0;
+    this.burn = () => {
+      this.ctx.clearRect(0, 0, this.width, this.height);
+
+      const yFrame = (this.burnFrame * 1330) / 7;
+      this.ctx.drawImage(
+        this.imgBurn,
+        yFrame,
+        0,
+        190,
+        190,
+        0,
+        0,
+        this.width,
+        this.height
+      );
+      console.log(this.burnMs, this.burnFrame);
+      this.burnMs++;
+      if (this.burnMs >= 3) {
+        this.burnFrame++;
+        this.burnMs = 0;
+      }
+
+      if (this.burnFrame >= 7) {
+        cancelAnimationFrame(this.burnAnimation);
+        this.ctx.clearRect(0, 0, this.width, this.height);
+      } else {
+        this.burnAnimation = requestAnimationFrame(this.burn);
+      }
+    };
 
     this.done = () => {
       this.canvas.removeEventListener("click", check);
@@ -56,6 +89,7 @@ export class Card {
 
       cancelAnimationFrame(this.animation);
       this.ctx.clearRect(0, 0, this.width, this.height);
+      this.burn();
     };
 
     this.listen = () => {

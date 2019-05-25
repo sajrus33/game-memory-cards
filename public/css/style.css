@@ -5,13 +5,13 @@
   cursor: pointer;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 15px;
   background-color: silver;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #000;
-}
+} */
 body {
   position: absolute;
   width: 100%;
@@ -63,8 +63,8 @@ canvas {
   position: absolute;
   right: 5px;
   top: 5px;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border: none;
   background-color: transparent;
   background-image: url("/game-memory-cards/public/img/icon.png");
@@ -81,13 +81,13 @@ canvas {
   height: 50px;
   border: none;
   border-radius: 50%;
-  background-color: white;
+  background-color: silver;
   background-image: url("/game-memory-cards/public/img/copy.png");
   background-size: 100% 100%;
   z-index: 3;
 }
 .link:hover {
-  background-color: silver;
+  background-color: white;
 }
 
 .interfejs {
@@ -131,6 +131,7 @@ canvas {
   text-align: center;
 
   color: silver;
+  height: 45px;
 }
 
 .tStatistics .tr:nth-child(even) {

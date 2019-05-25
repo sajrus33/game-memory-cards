@@ -7,7 +7,6 @@ import { myAlert } from "/game-memory-cards/public/src/myAlert.js";
 
 import { Interface } from "/game-memory-cards/public/src/Interface.js";
 
-
 // console.log({ utilities, myAlert, Card, resources, Table });
 
 export class Game {
@@ -53,6 +52,7 @@ export class Game {
     this.needUncheck = false;
     this.run = false;
 
+    // under function, uncheck cards
     this.uncheckCards = () => {
       this.cards.forEach(card => {
         if (card.checked) {
@@ -161,7 +161,10 @@ export class Game {
     this.finish = () => {
       const name = "SlimShady";
       const time = this.table.statistics.min + ":" + this.table.statistics.sec;
-      const chance = this.table.statistics.chance;
+      const chance = (
+        this.table.statistics.score / this.table.statistics.chance
+      ).toFixed(3);
+
       this.gameWrapper.remove();
 
       new this.Interface(name, time, chance);

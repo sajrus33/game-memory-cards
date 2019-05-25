@@ -28,7 +28,6 @@ export class Interface {
         parent.append(this[name]);
       } else if (!binded) {
         const whatever = document.createElement(type);
-        console.log(whatever, "u need to be here");
         this.addClass(whatever, clas);
         whatever.innerText = text;
         parent.append(whatever);
@@ -150,10 +149,22 @@ export class Interface {
         if (name) {
           this.statisticsPositions.push([name, this.level, time, chance]);
         }
-        console.log(names, levels, times, scores, "got u back");
+
+        if (this.statisticsPositions) {
+          this.statisticsPositions.sort((position1, position2) => {
+            if (position1[3] > position2[3]) return -1;
+            if (position1[3] < position2[3]) return 1;
+
+            if (position1[0] > position2[0]) return 1;
+            if (position1[0] < position2[0]) return -1;
+          });
+        }
+
+        // console.log(names, levels, times, scores, "got u back");
+
+        // so now we can  set all of them into local
         this.setStorage();
       } else myAlert("We are sorry but your browser don't use localStorage");
-      // so now we can  set all of them into local
     };
 
     //
@@ -229,13 +240,15 @@ export class Interface {
 
     this.startGame = (type = this.gameType, level = this.level) => {
       setTimeout(() => {
-        console.log(this.self, "przed");
+        // console.log(this.self, "przed");
         this.self.remove();
 
-        console.log(this.self, "po");
-        this.game = new this.Game(level, type);
-        this.game.init();
-        this.resize();
+        // console.log(this.self, "po");
+        if (!this.game) {
+          this.game = new this.Game(level, type);
+          this.game.init();
+          this.resize();
+        } else console.log("DragonBall Click");
       }, 400);
     };
 
