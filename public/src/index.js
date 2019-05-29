@@ -1,4 +1,4 @@
-import { Interface } from "/public/src/Interface.js";
+import { Interface } from "/game-memory-cards/public/src/Interface.js";
 
 new Interface();
 

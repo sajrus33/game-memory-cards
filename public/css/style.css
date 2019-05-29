@@ -23,7 +23,7 @@ body {
   overflow: hidden;
   overflow-y: scroll;
 
-  background-image: url("/public/img/basic.jpg");
+  background-image: url("/game-memory-cards/public/img/basic.jpg");
   background-size: cover;
   /* box-shadow: inset 0 300vw 0 0px rgba(0, 0, 0, 0.5); */
 }
@@ -73,7 +73,7 @@ canvas {
   height: 60px;
   border: none;
   background-color: transparent;
-  background-image: url("/public/img/icon.png");
+  background-image: url("/game-memory-cards/public/img/icon.png");
   background-size: 100% 100%;
   z-index: 3;
 }
@@ -88,7 +88,7 @@ canvas {
   border: none;
   border-radius: 50%;
   background-color: silver;
-  background-image: url("/public/img/copy.png");
+  background-image: url("/game-memory-cards/public/img/copy.png");
   background-size: 100% 100%;
   z-index: 3;
 }
@@ -189,7 +189,7 @@ canvas {
   animation: fadeIn 0.2s forwards;
 }
 .button:hover {
-  background-image: url("/public/img/button.png");
+  background-image: url("/game-memory-cards/public/img/button.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

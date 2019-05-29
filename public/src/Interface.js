@@ -1,4 +1,4 @@
-import { Game } from "/public/src/Game.js";
+import { Game } from "/game-memory-cards/public/src/Game.js";
 // import { myAlert } from "/public/src/myAlert.js";
 
 export class Interface {
