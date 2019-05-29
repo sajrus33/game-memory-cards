@@ -1,11 +1,11 @@
-import * as utilities from "/game-memory-cards/public/src/utilities.js";
-import * as resources from "/game-memory-cards/public/src/resources.js";
+import * as utilities from "/public/src/utilities.js";
+import * as resources from "/public/src/resources.js";
 
-import { Card } from "/game-memory-cards/public/src/Card.js";
-import { Table } from "/game-memory-cards/public/src/Table.js";
-import { myAlert } from "/game-memory-cards/public/src/myAlert.js";
+import { Card } from "/public/src/Card.js";
+import { Table } from "/public/src/Table.js";
+import { myAlert } from "/public/src/myAlert.js";
 
-import { Interface } from "/game-memory-cards/public/src/Interface.js";
+import { Interface } from "/public/src/Interface.js";
 
 // console.log({ utilities, myAlert, Card, resources, Table });
 
@@ -162,12 +162,30 @@ export class Game {
       const name = "SlimShady";
       const time = this.table.statistics.min + ":" + this.table.statistics.sec;
       const chance = (
-        this.table.statistics.score / this.table.statistics.chance
-      ).toFixed(3);
+        (this.table.statistics.score / this.table.statistics.chance) *
+        100
+      ).toFixed(1);
+      // chance = chance === NaN ? 0 : chance;
+      // !!!!!!!!!!!!!!!!!!!!!  level in interfejs is cardOption here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 xdddddddddddddddddddd!!!!!!!!!!!!!!!!!!
+
+      let level = undefined;
+      switch (this.cardsOption) {
+        case 0:
+          level = "40 Tiles";
+          break;
+        case 1:
+          level = "20 Tiles";
+          break;
+        case 2:
+          level = "16 Tiles";
+          break;
+      }
+      // const level = this.cardsOption + 1;
+      console.log({ level }, { name }, { chance }, { time });
 
       this.gameWrapper.remove();
 
-      new this.Interface(name, time, chance);
+      new this.Interface(name, time, chance, level);
     };
 
     this.init = (cardsOption = this.cardsOption) => {

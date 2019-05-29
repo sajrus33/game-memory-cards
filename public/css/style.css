@@ -22,7 +22,8 @@ body {
   align-items: center;
   overflow: hidden;
   overflow-y: scroll;
-  background-image: url("/game-memory-cards/public/img/basic.jpg");
+
+  background-image: url("/public/img/basic.jpg");
   background-size: cover;
   /* box-shadow: inset 0 300vw 0 0px rgba(0, 0, 0, 0.5); */
 }
@@ -58,16 +59,21 @@ canvas {
 
 .table {
   box-shadow: inset 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
 }
 .returnBtn {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 50px;
-  height: 50px;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  transform: translateY(-10px);
+  width: 60px;
+  height: 60px;
   border: none;
   background-color: transparent;
-  background-image: url("/game-memory-cards/public/img/icon.png");
+  background-image: url("/public/img/icon.png");
   background-size: 100% 100%;
   z-index: 3;
 }
@@ -75,14 +81,14 @@ canvas {
   display: block;
   z-index: 3;
   position: fixed;
-  left: 5px;
+  right: 5px;
   top: 5px;
   width: 50px;
   height: 50px;
   border: none;
   border-radius: 50%;
   background-color: silver;
-  background-image: url("/game-memory-cards/public/img/copy.png");
+  background-image: url("/public/img/copy.png");
   background-size: 100% 100%;
   z-index: 3;
 }
@@ -102,9 +108,10 @@ canvas {
 }
 
 .tStatistics {
-  min-height: 320px;
-  width: 80%;
-  min-width: 320px;
+  /* min-height: calc(320px * 0.8); */
+  min-width: 80%;
+  max-width: 100%;
+  /* min-width: calc(320px * 0.8); */
   background-color: #000;
 
   border-left: 2px solid silver;
@@ -119,10 +126,8 @@ canvas {
 
   font-family: "courier";
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1em;
   animation: fadeIn 0.2s forwards;
-
-  overflow: hidden;
 }
 .tStatistics .th {
   padding: 15px 0;
@@ -142,6 +147,26 @@ canvas {
 .tStatistics .td {
   text-transform: none;
   border: 2px solid silver;
+  padding: 2px;
+}
+
+.deleteInfo {
+  width: 80%;
+  height: 170px;
+  font-size: 2em;
+  font-weight: 400;
+  text-align: center;
+  box-shadow: inset 0 0 15px 0 red;
+  font-family: "Courier New", Courier, monospace;
+
+  /* animation: fadeIn 0.2s forwards; */
+  background-color: silver;
+  color: black;
+
+  /* flex */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button {
@@ -162,6 +187,22 @@ canvas {
   font-size: 1.5em;
 
   animation: fadeIn 0.2s forwards;
+}
+.button:hover {
+  background-image: url("/public/img/button.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.red {
+  background-color: red;
+  height: 50px;
+  font-size: 1.3em;
+  font-weight: 800;
+}
+.red:hover {
+  background-image: none;
 }
 @keyframes fadeIn {
   0% {
@@ -227,5 +268,19 @@ canvas {
   }
   100% {
     top: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    background-color: lightblue;
+  }
+  .returnBtn {
+    width: 75px;
+    height: 75px;
+  }
+  .link {
+    width: 75px;
+    height: 75px;
   }
 }

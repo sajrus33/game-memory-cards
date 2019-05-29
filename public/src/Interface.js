@@ -1,11 +1,11 @@
-import { Game } from "/game-memory-cards/public/src/Game.js";
+import { Game } from "/public/src/Game.js";
 // import { myAlert } from "/public/src/myAlert.js";
 
 export class Interface {
-  constructor(name, time, chance, game = Game) {
+  constructor(name, time, chance, level, game = Game) {
     // FUNCTIONS AND UNDERFUNCTIONS
     // UNDERFUNCTION, ADDCLASS
-    this.addClass = (element, clas) => {
+    const addClass = (element, clas) => {
       element.classList.add(clas);
     };
 
@@ -13,9 +13,9 @@ export class Interface {
     //
     // UNDERFUNCTION, CREATE DOM ELEMENT
 
-    this.createDOMElement = (
+    const createDOMElement = (
       name = "slimShady",
-      text = "That's why I'm on what I'm on cause I'm my mom.",
+      text = "5",
       clas = "button",
       type = "button",
       parent = this.self,
@@ -23,12 +23,12 @@ export class Interface {
     ) => {
       if (binded) {
         this[name] = document.createElement(type);
-        this.addClass(this[name], clas);
+        addClass(this[name], clas);
         this[name].innerText = text;
         parent.append(this[name]);
       } else if (!binded) {
         const whatever = document.createElement(type);
-        this.addClass(whatever, clas);
+        addClass(whatever, clas);
         whatever.innerText = text;
         parent.append(whatever);
       }
@@ -55,7 +55,7 @@ export class Interface {
     //
     // UNDERFUNCTION, REMOVE ALL BUTTONS
 
-    this.removeAllBtns = () => {
+    const removeAllBtns = () => {
       document.querySelectorAll(".button").forEach(button => {
         button.remove();
       });
@@ -65,26 +65,26 @@ export class Interface {
     //
     // UNDERFUNCTION,  DISPLAY TILES MENU
 
-    this.askAboutTiles = () => {
-      this.createDOMElement("size1Btn", "16 tiles");
+    const askAboutTiles = () => {
+      createDOMElement("size1Btn", "16 tiles");
       this.size1Btn.addEventListener("click", () => {
-        this.addClass(this.size1Btn, "hideRight");
+        addClass(this.size1Btn, "hideRight");
         this.level = 2;
-        this.startGame();
+        startGame();
       });
 
-      this.createDOMElement("size2Btn", "20 tiles");
+      createDOMElement("size2Btn", "20 tiles");
       this.size2Btn.addEventListener("click", () => {
-        this.addClass(this.size2Btn, "hideRight");
+        addClass(this.size2Btn, "hideRight");
         this.level = 1;
-        this.startGame();
+        startGame();
       });
 
-      this.createDOMElement("size3Btn", "40 tiles");
+      createDOMElement("size3Btn", "40 tiles");
       this.size3Btn.addEventListener("click", () => {
-        this.addClass(this.size3Btn, "hideRight");
+        addClass(this.size3Btn, "hideRight");
         this.level = 0;
-        this.startGame();
+        startGame();
       });
     };
 
@@ -92,7 +92,7 @@ export class Interface {
     //
     // UNDERFUNCTION,  CHECK LOCALSTORAGE
 
-    this.checkLocalStorage = () => {
+    const checkLocalStorage = () => {
       // test if localStorage exist
       try {
         //try to storage some data in LocalStorage
@@ -107,9 +107,9 @@ export class Interface {
 
     //
     //
-    // UNDERFUNCTION, GET LOCALSTORAGE
-    this.setStorage = () => {
-      if (this.checkLocalStorage) {
+    // UNDERFUNCTION, SET LOCALSTORAGE
+    const setStorage = () => {
+      if (checkLocalStorage) {
         const names = [],
           levels = [],
           times = [],
@@ -129,9 +129,12 @@ export class Interface {
       } else myAlert("We are sorry but your browser don't use localStorage");
     };
 
-    this.getStorage = (name, time, chance) => {
+    //
+    //
+    // UNDERFUNCTION, GET LOCALSTORAGE + SORT STATISTICS DATA
+    const getStorage = (name, time, chance, level) => {
       // basicly we are taking locals, adding actual one
-      if (this.checkLocalStorage) {
+      if (checkLocalStorage) {
         const names = JSON.parse(localStorage.getItem("names"));
         const levels = JSON.parse(localStorage.getItem("levels"));
         const times = JSON.parse(localStorage.getItem("times"));
@@ -147,7 +150,7 @@ export class Interface {
           });
         }
         if (name) {
-          this.statisticsPositions.push([name, this.level, time, chance]);
+          this.statisticsPositions.push([name, level, time, chance]);
         }
 
         if (this.statisticsPositions) {
@@ -155,38 +158,90 @@ export class Interface {
             if (position1[3] > position2[3]) return -1;
             if (position1[3] < position2[3]) return 1;
 
-            if (position1[0] > position2[0]) return 1;
-            if (position1[0] < position2[0]) return -1;
+            if (position1[1] > position2[1]) return 1;
+            if (position1[1] < position2[1]) return -1;
           });
         }
 
         // console.log(names, levels, times, scores, "got u back");
 
         // so now we can  set all of them into local
-        this.setStorage();
+        setStorage();
       } else myAlert("We are sorry but your browser don't use localStorage");
+    };
+
+    //
+    //
+    // UNDERFUNCTION, Create Remove Statisctis Menu option
+    const createRemoveStatistics = () => {
+      // Create button Statistics
+      createDOMElement("historyBtn", "Remove Statistics");
+      addClass(this.historyBtn, "red");
+
+      // LISTENER
+      this.historyBtn.addEventListener("click", () => {
+        this.tStatistics.remove();
+        removeAllBtns();
+
+        // Create BUTTON YES "delete"
+        createDOMElement(
+          "deleteInfo",
+          "Are you sure that you want to remove all statistics ?",
+          "deleteInfo",
+          "div"
+        );
+
+        //
+
+        // Create BUTTON YES "delete"
+        createDOMElement("deleteBtn", "Yes", "button", "button");
+        addClass(this.deleteBtn, "red");
+
+        // LISTENER
+        this.deleteBtn.addEventListener("click", () => {
+          localStorage.clear();
+          this.self.remove();
+          new Interface();
+          // removeAllBtns();
+          // this.deleteInfo.remove();
+          // showStatistics();
+        });
+
+        // Create BUTTON YES "delete"
+        createDOMElement("noDeleteBtn", "No", "button", "button");
+        // LISTENER
+        this.noDeleteBtn.addEventListener("click", () => {
+          removeAllBtns();
+          this.deleteInfo.remove();
+
+          showStatistics();
+        });
+      });
     };
 
     //
     //
     // UNDERFUNCTION,  DISPLAY STATISTICS
 
-    this.showStatistics = () => {
-      this.createDOMElement("tStatistics", null, "tStatistics", "table");
+    const showStatistics = () => {
+      // Create remove options
+      createRemoveStatistics();
+
+      createDOMElement("tStatistics", null, "tStatistics", "table");
       // create Table Row for Headers
-      this.createDOMElement("tRowH", "", "tr", "tr", this.tStatistics);
+      createDOMElement("tRowH", "", "tr", "tr", this.tStatistics);
 
       // create Table Row Headers
-      this.createDOMElement("tName", "name", "th", "th", this.tRowH);
-      this.createDOMElement("tLevel", "level", "th", "th", this.tRowH);
-      this.createDOMElement("tTime", "time", "th", "th", this.tRowH);
-      this.createDOMElement("tScore", "score", "th", "th", this.tRowH);
+      createDOMElement("tName", "name", "th", "th", this.tRowH);
+      createDOMElement("tLevel", "level", "th", "th", this.tRowH);
+      createDOMElement("tTime", "time", "th", "th", this.tRowH);
+      createDOMElement("tScore", "s/t", "th", "th", this.tRowH);
       // create Statistics positions
       this.statisticsPositions.forEach((position, index) => {
         // console.log(position);
         // Create new table row for position
 
-        this.createDOMElement(
+        createDOMElement(
           "position" + index,
           null,
           "tr",
@@ -196,7 +251,7 @@ export class Interface {
 
         // Create all table data !
         // name
-        this.createDOMElement(
+        createDOMElement(
           "whatever",
           position[0],
           "td",
@@ -205,7 +260,7 @@ export class Interface {
           false
         );
         //level
-        this.createDOMElement(
+        createDOMElement(
           "whatever",
           position[1],
           "td",
@@ -214,7 +269,7 @@ export class Interface {
           false
         );
         //time
-        this.createDOMElement(
+        createDOMElement(
           "whatever",
           position[2],
           "td",
@@ -223,9 +278,9 @@ export class Interface {
           false
         );
         //score
-        this.createDOMElement(
+        createDOMElement(
           "whatever",
-          position[3],
+          position[3] == "NaN" ? "0.0" : position[3],
           "td",
           "td",
           this["position" + index],
@@ -238,7 +293,7 @@ export class Interface {
     //
     // FUNCTION, START GAME
 
-    this.startGame = (type = this.gameType, level = this.level) => {
+    const startGame = (type = this.gameType, level = this.level) => {
       setTimeout(() => {
         // console.log(this.self, "przed");
         this.self.remove();
@@ -256,62 +311,75 @@ export class Interface {
     //
     // FUNCTION, CREATE MAIN MENU
 
-    this.createStartMenu = () => {
-      this.createDOMElement("statisticsBackBtn", null, "returnBtn");
-      // Listener
+    const createStartMenu = () => {
+      // Create BACK BUTTON
+      createDOMElement("statisticsBackBtn", null, "returnBtn");
+
+      // LISTENER
       this.statisticsBackBtn.addEventListener("click", () => {
         if (this.tStatistics) {
           this.tStatistics.remove();
         }
-        this.removeAllBtns();
-        this.createStartMenu();
+        if (this.deleteInfo) {
+          this.deleteInfo.remove();
+        }
+        removeAllBtns();
+        createStartMenu();
       });
-      // Create new Interfejs .. little bit primitvie
-      this.createDOMElement("startBtn", "Start Game");
+
+      // Create new Interfejs ..
+      createDOMElement("startBtn", "Start Game");
+
+      // Create Type MENU
+      const createGameTypeMenu = () => {
+        removeAllBtns();
+
+        // Create button CATEDRAS
+        createDOMElement("catedrasBtn", "Cathedrals");
+
+        // LISTENER
+        this.catedrasBtn.addEventListener("click", () => {
+          addClass(this.catedrasBtn, "hideRight");
+          // game option set
+          this.gameType = "catedras";
+          setTimeout(() => {
+            removeAllBtns();
+            askAboutTiles();
+          }, 400);
+        });
+
+        // Create button Faces
+        createDOMElement("facesBtn", "People");
+
+        // LISTENER
+        this.facesBtn.addEventListener("click", () => {
+          addClass(this.facesBtn, "hideRight");
+          this.gameType = "faces";
+          setTimeout(() => {
+            removeAllBtns();
+            askAboutTiles();
+          }, 400);
+        });
+      };
+      // LISTENER
       this.startBtn.addEventListener("click", () => {
-        this.addClass(this.startBtn, "hideRight");
+        addClass(this.startBtn, "hideRight");
 
         setTimeout(() => {
           // remove all old buttons
-          this.removeAllBtns();
-
-          // Create button CATEDRAS
-          this.createDOMElement("catedrasBtn", "Catedras");
-
-          // LISTENER
-          this.catedrasBtn.addEventListener("click", () => {
-            this.addClass(this.catedrasBtn, "hideRight");
-            // game option set
-            this.gameType = "catedras";
-            setTimeout(() => {
-              this.removeAllBtns();
-              this.askAboutTiles();
-            }, 400);
-          });
-
-          // Create button Faces
-          this.createDOMElement("facesBtn", "Faces");
-
-          // LISTENER
-          this.facesBtn.addEventListener("click", () => {
-            this.addClass(this.facesBtn, "hideRight");
-            this.gameType = "faces";
-            setTimeout(() => {
-              this.removeAllBtns();
-              this.askAboutTiles();
-            }, 400);
-          });
+          createGameTypeMenu();
         }, 400);
       });
 
-      this.createDOMElement("statsBtn", "Statistics");
+      // Create button Statistics
+      createDOMElement("statsBtn", "Statistics");
 
       // LISTENER
       this.statsBtn.addEventListener("click", () => {
-        this.addClass(this.statsBtn, "hideRight");
+        addClass(this.statsBtn, "hideRight");
         setTimeout(() => {
-          this.removeAllBtns();
-          this.showStatistics();
+          removeAllBtns();
+          showStatistics();
         }, 400);
       });
     };
@@ -329,17 +397,17 @@ export class Interface {
 
       this.Game = game;
       this.game = undefined;
-      this.level = 1;
+      this.level = undefined; //we gonna send it straight like others
       this.gameType = "faces";
 
       this.statisticsPositions = [];
       // name,time,score are values from constructor
-      this.getStorage(name, time, chance);
+      getStorage(name, time, chance, level);
 
       // Add Interfejs to body
       document.body.appendChild(this.self);
       // create first buttons
-      this.createStartMenu();
+      createStartMenu();
     })();
   }
 }

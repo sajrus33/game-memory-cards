@@ -1,14 +1,7 @@
-import { Statistics } from "/game-memory-cards/public/src/Statistics.js";
+import { Statistics } from "/public/src/Statistics.js";
 console.log(Statistics);
 export class Table {
-  constructor(
-    parent = document.body,
-    width,
-    height,
-    imgSrc,
-    imgSrc2,
-    alpha = 1
-  ) {
+  constructor(parent = document.body, width, height, imgSrc, imgSrc2) {
     //      DIV
     this.div = document.createElement("div");
     this.width = width;
@@ -19,17 +12,19 @@ export class Table {
     this.div.style.position = "relative";
 
     //      CANVAS
-    this.canvas = document.createElement("canvas");
+    this.canvas = document.createElement("div");
     this.canvas.classList.add("table");
     this.canvas.style.height = "80%";
     this.canvas.style.width = "100%";
     this.canvas.style.position = "absolute";
     this.canvas.style.top = "20%";
+    this.canvas.style.backgroundImage = "url('" + imgSrc + "')";
+    console.log("url('" + imgSrc + "')");
 
     //      CTX
-    this.ctx = this.canvas.getContext("2d");
-    this.ctx.globalAlpha = alpha;
-    this.ctx.imageSmoothingQuality = "high";
+    // this.ctx = this.canvas.getContext("2d");
+    // this.ctx.globalAlpha = alpha;
+    // this.ctx.imageSmoothingQuality = "high";
 
     //      OWN PROPERTYS
     this.parent = parent;
@@ -49,7 +44,7 @@ export class Table {
     this.cardswrapper.style.position = "absolute";
     this.cardswrapper.style.top = "20%";
 
-    this.cardswrapper.style.backgroundColor = "transparent";
+    // this.cardswrapper.style.backgroundColor = "transparent";
 
     // load() images
     this.load = (src = this.imgSrc, src2 = this.imgSrc2) => {
@@ -80,12 +75,10 @@ export class Table {
     };
     this.update = () => {};
     this.render = () => {
-      this.ctx.clearRect(0, 0, this.width, this.height);
-
-      this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
-
-      this.update();
-      requestAnimationFrame(this.render);
+      // this.ctx.clearRect(0, 0, this.width, this.height);
+      // this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
+      // this.update();
+      // requestAnimationFrame(this.render);
     };
 
     console.log(this.canvas);

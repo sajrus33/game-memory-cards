@@ -1,11 +1,11 @@
 export class Card {
-  constructor(parent, width, height, imgSrc, imgSrc2, alpha = 1) {
+  constructor(parent, width, height, imgSrc, imgSrc2) {
     // CANVAS
-    this.canvas = document.createElement("canvas");
+    this.canvas = document.createElement("canvas", { alpha: false });
     // this.canvas.classList.add("card");
     // CTX
     this.ctx = this.canvas.getContext("2d");
-    this.ctx.globalAlpha = alpha;
+    // this.ctx.globalAlpha = alpha;
     this.ctx.imageSmoothingQuality = "high";
 
     // OWN PROPERTYS
@@ -34,10 +34,14 @@ export class Card {
       this.img2.src = src2;
     };
     this.check = () => {
+      // change checked prop
       if (this.checked) {
         this.checked = false;
       } else this.checked = true;
+      //
       this.canvas.classList.toggle("card");
+
+      // change imgs while CSS class animate rotating of cards
       setTimeout(() => {
         this.img2.src = this.imgSrc;
         this.img.src = this.imgSrc2;
@@ -67,9 +71,9 @@ export class Card {
         this.width,
         this.height
       );
-      console.log(this.burnMs, this.burnFrame);
+      // console.log(this.burnMs, this.burnFrame);
       this.burnMs++;
-      if (this.burnMs >= 3) {
+      if (this.burnMs >= 2) {
         this.burnFrame++;
         this.burnMs = 0;
       }
