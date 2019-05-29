@@ -14,7 +14,6 @@ export class Game {
 
     this.cardsOption = cardsOption;
     this.resources = resources;
-    this.utilities = utilities;
 
     this.Interface = Interface;
 
