@@ -1,4 +1,3 @@
-import * as utilities from "/game-memory-cards/public/src/utilities.js";
 import * as resources from "/game-memory-cards/public/src/resources.js";
 
 import { Card } from "/game-memory-cards/public/src/Card.js";
