@@ -179,7 +179,7 @@ export class Game {
           break;
       }
       // const level = this.cardsOption + 1;
-      console.log({ level }, { name }, { chance }, { time });
+      // console.log({ level }, { name }, { chance }, { time });
 
       this.gameWrapper.remove();
 

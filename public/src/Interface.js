@@ -121,7 +121,7 @@ export class Interface {
           scores.push(position[3]);
         });
 
-        console.log(names, levels, times, scores, "will sended");
+        // console.log(names, levels, times, scores, "will sended");
         localStorage.setItem("names", JSON.stringify(names));
         localStorage.setItem("levels", JSON.stringify(levels));
         localStorage.setItem("times", JSON.stringify(times));

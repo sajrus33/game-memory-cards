@@ -1,5 +1,5 @@
 import { Statistics } from "/game-memory-cards/public/src/Statistics.js";
-console.log(Statistics);
+// console.log(Statistics);
 export class Table {
   constructor(parent = document.body, width, height, imgSrc, imgSrc2) {
     //      DIV
@@ -19,7 +19,7 @@ export class Table {
     this.canvas.style.position = "absolute";
     this.canvas.style.top = "20%";
     this.canvas.style.backgroundImage = "url('" + imgSrc + "')";
-    console.log("url('" + imgSrc + "')");
+    // console.log("url('" + imgSrc + "')");
 
     //      CTX
     // this.ctx = this.canvas.getContext("2d");
@@ -81,6 +81,6 @@ export class Table {
       // requestAnimationFrame(this.render);
     };
 
-    console.log(this.canvas);
+    // console.log(this.canvas);
   }
 }
