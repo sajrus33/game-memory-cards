@@ -1,9 +1,3 @@
-// export let variable = {
-//     card: [1, 3],
-// }
-// export const constant = {
-//     card: [1, 3],
-// }
 export const imgs = {
   faces: {
     faces: [
@@ -80,14 +74,6 @@ export const imgs = {
     category: "public/img/catedras/1_category.jpg"
   }
 };
-
-// 40
-//  10% 25%
-// 20
-//  20% 25%
-// 16
-//  25% 25%
-
 export const cards = {
   number: [40, 20, 16],
   width: ["10%", "20%", "25%"],

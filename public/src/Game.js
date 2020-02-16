@@ -99,6 +99,7 @@ export class Game {
 
           if (this.table.statistics.score == this.cards.length / 2) {
             this.table.statistics.timerStop();
+            this.finish()
           }
         } else {
           this.needUncheck = true;
